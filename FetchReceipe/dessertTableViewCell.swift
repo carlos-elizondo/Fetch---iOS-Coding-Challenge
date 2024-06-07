@@ -35,7 +35,5 @@ class dessertTableViewCell: UITableViewCell {
                     }
                 }
             }
-        
     }
-
 }

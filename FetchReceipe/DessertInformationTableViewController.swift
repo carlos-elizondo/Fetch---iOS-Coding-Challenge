@@ -9,20 +9,20 @@ import UIKit
 
 class DessertInformationTableViewController: UITableViewController {
     
-    
-    
     var idMeal: String?
     var detailedMeal: MealsDetailed?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("I am inside dessert infomration table view controller!")
+//        print("I am inside dessert information table view controller!")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 435
         tableView.reloadData()
+        
         guard let idMeal = idMeal else { return print("guard returned idMeal") }
         print("idMeal: \(idMeal)")
+        
+        // Fetch the dessert with idMeal
         Task {
             do {
                 detailedMeal = try await fetchDessert(idMeal: idMeal)
@@ -33,12 +33,6 @@ class DessertInformationTableViewController: UITableViewController {
                 print ("Fetch mealInfo failed with error: \(error)")
             }
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     // MARK: - Class Constructors
@@ -50,6 +44,7 @@ class DessertInformationTableViewController: UITableViewController {
         super.init(coder: coder)
     }
     
+    // Tires to fetch the specific meal from the 2nd endpoint.
     func fetchDessert(idMeal: String) async throws -> MealsDetailed {
         let partialURL = "https://themealdb.com/api/json/v1/1/lookup.php?i="
         let urlComponents = URLComponents(string: "\(partialURL)\(idMeal)")!
@@ -60,7 +55,6 @@ class DessertInformationTableViewController: UITableViewController {
               httpResponse.statusCode == 200 else {
             throw MealsInfoError.itemsNotFound
         }
-        //       let string = String(data: data, encoding: .utf8) {
         let mealDetailed = try jsonDecoder.decode(MealsDetailed.self, from: data)
         return mealDetailed
     }
@@ -74,7 +68,7 @@ class DessertInformationTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        guard let detailedMeal = detailedMeal?.mealsDetailedArray else { return 0}
+        guard let detailedMeal = detailedMeal?.mealsDetailedArray else { return 0 }
         return detailedMeal.count
     }
 
@@ -84,6 +78,7 @@ class DessertInformationTableViewController: UITableViewController {
         
         // Get the the meal at that specific indexPath
         guard let meal = detailedMeal?.mealsDetailedArray[indexPath.row] else { return cell }
+        
         // Configure the cell...
         cell.update(meal: meal)
         return cell

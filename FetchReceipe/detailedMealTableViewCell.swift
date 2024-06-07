@@ -43,10 +43,9 @@ class detailedMealTableViewCell: UITableViewCell {
         IngredientsTextView.text = getIngredientsAndMeasurements(meal: meal)
     }
     
-//    func getIngredients(meal: MealDetailed) {
-//
-//    }
-    // Method to return a dictionary of properties
+    // Function retrieves the attributes for the non-null ingredients & measurements
+    // Then it creates a dictionary of each with their values
+    // It returns a string as such: *(bullet point) ingredient measurement
     func getIngredientsAndMeasurements(meal: MealDetailed) -> String {
         let mirror = Mirror(reflecting: meal)
         var ingredientsDict = [String: String]()

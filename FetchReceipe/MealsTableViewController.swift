@@ -53,17 +53,15 @@ class MealsTableViewController: UITableViewController {
             }
         }
         
+        // Giving time for images to download and load
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.loadMainRecipesActivityIndicator.isHidden = true
-//            self.tableView.dequeueReusableCell(withIdentifier: "mealsCell")?.isHidden = false
             self.tableView.reloadData()
         }
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     // Tires to fetch the recipes from the 1st endpoint.
@@ -76,7 +74,6 @@ class MealsTableViewController: UITableViewController {
               httpResponse.statusCode == 200 else {
             throw MealsInfoError.itemsNotFound
         }
-        //       let string = String(data: data, encoding: .utf8) {
         let meals = try jsonDecoder.decode(Meals.self, from: data)
         return meals
     }
@@ -85,13 +82,8 @@ class MealsTableViewController: UITableViewController {
         let sortedMealList = mealList.mealsArray.sorted {$0.nameOfMeal < $1.nameOfMeal}
         return Meals(mealsArray: sortedMealList)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -100,25 +92,18 @@ class MealsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         guard let meals = meals else { return 0}
-        print("\n\nMeals.count: \(meals.mealsArray.count)\n\n")
+//        print("\n\nMeals.count: \(meals.mealsArray.count)\n\n")
         return meals.mealsArray.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mealsCell", for: indexPath) as! dessertTableViewCell
+        
+        // Get the the meal at that specific indexPath
         guard let meal = meals?.mealsArray[indexPath.row] else { return cell }
+        
         // Configure the cell...
-//        cell.textLabel?.text = meals.mealsArray[indexPath.row].nameOfMeal
-//        ImageDownloader.downloadImage(meals.mealsArray[indexPath.row].mealStringURLImage) {
-//            image, urlString in
-//            if let imageObject = image {
-//                // performing UI operation on main thread
-//                DispatchQueue.main.async {
-//                    cell.imageView?.image = imageObject
-//                }
-//            }
-//        }
         cell.update(meal: meal)
         return cell
     }
@@ -168,19 +153,6 @@ class MealsTableViewController: UITableViewController {
 //        segue.destination.
     }
     */
-//    @IBSegueAction func dessertToRetrieve(_ coder: NSCoder) -> DessertInformationTableViewController? {
-//        // Get the buildings database
-//        
-//        if let cell = sender as? UITableViewCell,
-//           let indexPath = tableView.indexPath(for: cell) {
-//            let dessertToRetrieveIdMeal = meals?.mealsArray[indexPath.row].idMeal
-//            return DessertInformationTableViewController(coder: coder, idMeal: dessertToRetrieveIdMeal)
-//        } else {
-//            return DessertInformationTableViewController(coder: coder)
-//        }
-//    }
-//    
-//}
 
     @IBSegueAction func dessertToRetrieve(_ coder: NSCoder, sender: Any?) -> DessertInformationTableViewController? {
         if let cell = sender as? UITableViewCell,
@@ -193,14 +165,4 @@ class MealsTableViewController: UITableViewController {
             return DessertInformationTableViewController(coder: coder)
         }
     }
-    }
-    
-
-func imageFrom(url: String) throws -> UIImage{
-    if let data = try? Data(contentsOf: URL(string: url)!) {
-        if let image = UIImage(data: data) {
-            return image
-        }
-    }
-    return UIImage()
 }
