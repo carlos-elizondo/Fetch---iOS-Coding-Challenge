@@ -1,12 +1,13 @@
 //
 //  MealsTableViewController.swift
-//  FetchReceipe
+//  FetchRecipe
 //
 //  Created by Carlos Elizondo on 6/3/24.
 //
 
 import UIKit
 
+// Converts the received URL into a UIImage object.
 class ImageDownloader {
     static func downloadImage(_ urlString: String, completion: ((_ _image: UIImage?, _ urlString: String?) -> ())?) {
        guard let url = URL(string: urlString) else {
@@ -32,55 +33,7 @@ class ImageDownloader {
    }
 }
 
-//func loadData() {
-//    // Use DispatchGroup to track image download completion
-//    let group = DispatchGroup()
-//    var downloadedImages = [UIImage]()
-//    var informationArray = [String]() // Replace with your information data type
-//    
-//    // Loop through your data and download images asynchronously
-//    for data in yourDataArray {
-//        group.enter()
-//        DispatchQueue.global().async {
-//            // Download image for current data object
-//            let image = downloadImage(from: data.imageURL)
-//            downloadedImages.append(image ?? UIImage()) // Handle potential download failures
-//            group.leave()
-//        }
-//        
-//        // Load information for current data object (can be done concurrently with image download)
-//        informationArray.append(loadInformation(from: data.infoURL))
-//    }
-//    
-//    // Handle data loading completion after all images are downloaded
-//    group.notify(queue: .main) {
-//        self.tableView.reloadData() // Reload table view with downloaded data
-//        self.activityIndicator.stopAnimating() // Stop the activity indicator
-//    }
-//}
-
-
 class MealsTableViewController: UITableViewController {
-    func fetchMeals() async throws -> Meals {
-        let urlComponents = URLComponents(string: "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert")!
-        let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
-        
-        let jsonDecoder = JSONDecoder()
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
-            throw MealsInfoError.itemsNotFound
-        }
-        //       let string = String(data: data, encoding: .utf8) {
-        let meals = try jsonDecoder.decode(Meals.self, from: data)
-        return meals
-    }
-    
-    func sortedMealsAlphabetically(mealList: Meals) -> Meals {
-        let sortedMealList = mealList.mealsArray.sorted {$0.nameOfMeal < $1.nameOfMeal}
-        return Meals(mealsArray: sortedMealList)
-    }
-    
-    
     @IBOutlet weak var loadMainRecipesActivityIndicator: UIActivityIndicatorView!
     
     
@@ -111,6 +64,26 @@ class MealsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    // Tires to fetch the recipes from the 1st endpoint.
+    func fetchMeals() async throws -> Meals {
+        let urlComponents = URLComponents(string: "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert")!
+        let (data, response) = try await URLSession.shared.data(from: urlComponents.url!)
+        
+        let jsonDecoder = JSONDecoder()
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw MealsInfoError.itemsNotFound
+        }
+        //       let string = String(data: data, encoding: .utf8) {
+        let meals = try jsonDecoder.decode(Meals.self, from: data)
+        return meals
+    }
+    
+    func sortedMealsAlphabetically(mealList: Meals) -> Meals {
+        let sortedMealList = mealList.mealsArray.sorted {$0.nameOfMeal < $1.nameOfMeal}
+        return Meals(mealsArray: sortedMealList)
     }
     
     override func viewWillAppear(_ animated: Bool) {

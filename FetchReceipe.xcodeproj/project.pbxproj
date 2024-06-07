@@ -10,11 +10,9 @@
 		072A8D192C137F17006DB8E0 /* dessertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072A8D182C137F17006DB8E0 /* dessertTableViewCell.swift */; };
 		07ACC9712C0E648100AFFEA7 /* MealsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ACC9702C0E648100AFFEA7 /* MealsTableViewController.swift */; };
 		07ACC9732C10F4C300AFFEA7 /* DessertInformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ACC9722C10F4C300AFFEA7 /* DessertInformationTableViewController.swift */; };
-		07ACC9952C1225C800AFFEA7 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ACC9942C1225C800AFFEA7 /* Meal.swift */; };
 		07ACC9972C1255F800AFFEA7 /* detailedMealTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ACC9962C1255F800AFFEA7 /* detailedMealTableViewCell.swift */; };
 		07F383B72C0A4EE600E74857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F383B62C0A4EE600E74857 /* AppDelegate.swift */; };
 		07F383B92C0A4EE600E74857 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F383B82C0A4EE600E74857 /* SceneDelegate.swift */; };
-		07F383BB2C0A4EE600E74857 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F383BA2C0A4EE600E74857 /* ViewController.swift */; };
 		07F383BE2C0A4EE600E74857 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 07F383BD2C0A4EE600E74857 /* Base */; };
 		07F383C02C0A4EE800E74857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07F383BF2C0A4EE800E74857 /* Assets.xcassets */; };
 		07F383C32C0A4EE800E74857 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 07F383C22C0A4EE800E74857 /* Base */; };
@@ -25,12 +23,10 @@
 		072A8D182C137F17006DB8E0 /* dessertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dessertTableViewCell.swift; sourceTree = "<group>"; };
 		07ACC9702C0E648100AFFEA7 /* MealsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsTableViewController.swift; sourceTree = "<group>"; };
 		07ACC9722C10F4C300AFFEA7 /* DessertInformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertInformationTableViewController.swift; sourceTree = "<group>"; };
-		07ACC9942C1225C800AFFEA7 /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		07ACC9962C1255F800AFFEA7 /* detailedMealTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailedMealTableViewCell.swift; sourceTree = "<group>"; };
 		07F383B32C0A4EE600E74857 /* FetchReceipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FetchReceipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F383B62C0A4EE600E74857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07F383B82C0A4EE600E74857 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		07F383BA2C0A4EE600E74857 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07F383BD2C0A4EE600E74857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07F383BF2C0A4EE800E74857 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07F383C22C0A4EE800E74857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,17 +66,15 @@
 			children = (
 				07F383B62C0A4EE600E74857 /* AppDelegate.swift */,
 				07F383B82C0A4EE600E74857 /* SceneDelegate.swift */,
-				07ACC9702C0E648100AFFEA7 /* MealsTableViewController.swift */,
-				07F383BA2C0A4EE600E74857 /* ViewController.swift */,
-				07F383CA2C0A53D400E74857 /* Meals.swift */,
-				07ACC9942C1225C800AFFEA7 /* Meal.swift */,
 				07F383BC2C0A4EE600E74857 /* Main.storyboard */,
 				07F383BF2C0A4EE800E74857 /* Assets.xcassets */,
 				07F383C12C0A4EE800E74857 /* LaunchScreen.storyboard */,
 				07F383C42C0A4EE800E74857 /* Info.plist */,
+				07ACC9702C0E648100AFFEA7 /* MealsTableViewController.swift */,
 				07ACC9722C10F4C300AFFEA7 /* DessertInformationTableViewController.swift */,
-				07ACC9962C1255F800AFFEA7 /* detailedMealTableViewCell.swift */,
 				072A8D182C137F17006DB8E0 /* dessertTableViewCell.swift */,
+				07ACC9962C1255F800AFFEA7 /* detailedMealTableViewCell.swift */,
+				07F383CA2C0A53D400E74857 /* Meals.swift */,
 			);
 			path = FetchReceipe;
 			sourceTree = "<group>";
@@ -160,8 +154,6 @@
 				07ACC9712C0E648100AFFEA7 /* MealsTableViewController.swift in Sources */,
 				07F383CB2C0A53D400E74857 /* Meals.swift in Sources */,
 				072A8D192C137F17006DB8E0 /* dessertTableViewCell.swift in Sources */,
-				07ACC9952C1225C800AFFEA7 /* Meal.swift in Sources */,
-				07F383BB2C0A4EE600E74857 /* ViewController.swift in Sources */,
 				07ACC9732C10F4C300AFFEA7 /* DessertInformationTableViewController.swift in Sources */,
 				07F383B72C0A4EE600E74857 /* AppDelegate.swift in Sources */,
 				07F383B92C0A4EE600E74857 /* SceneDelegate.swift in Sources */,
